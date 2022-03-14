@@ -1,0 +1,10 @@
+server:
+  port: 1414
+
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/stoncks?useSSL=false&useTimezone=true&serverTimezone=UTC
+    username: root
+    password: Keizo!1404
+
