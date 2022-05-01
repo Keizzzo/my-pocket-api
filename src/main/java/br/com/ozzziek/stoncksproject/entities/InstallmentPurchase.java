@@ -3,9 +3,11 @@ package br.com.ozzziek.stoncksproject.entities;
 import br.com.ozzziek.stoncksproject.entities.enums.CategoryEnum;
 import br.com.ozzziek.stoncksproject.entities.enums.FinancialReleaseTypeEnum;
 
+import javax.persistence.Entity;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Entity
 public abstract class  InstallmentPurchase extends FinancialRelease{
 
     private BigDecimal totalValue;

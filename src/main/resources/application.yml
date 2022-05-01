@@ -7,4 +7,8 @@ spring:
     url: jdbc:mysql://localhost:3306/stoncks?useSSL=false&useTimezone=true&serverTimezone=UTC
     username: root
     password: Keizo!1404
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 

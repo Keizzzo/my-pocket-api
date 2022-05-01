@@ -10,12 +10,12 @@ public class GerarParcelasPagamentoSimulacao {
         parcelado.setDescription("Empréstimo com Agiota");
         parcelado.setDueDay(20);
 
-        parcelado.generateParcels();
-
-        parcelado.getValidities().forEach((p,d) -> System.out.println("Parcela: " + p + " Data: " + d));
+//        parcelado.generateParcels();
+//
+//        parcelado.getValidities().forEach((p,d) -> System.out.println("Parcela: " + p + " Data: " + d));
 
         //Resultado deve ser: 2021-12-20
-        System.out.println(parcelado.getValidities().get(4));
+//        System.out.println(parcelado.getValidities().get(4));
 
     }
 

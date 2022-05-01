@@ -1,23 +1,33 @@
 package br.com.ozzziek.stoncksproject.entities;
 
 import br.com.ozzziek.stoncksproject.entities.enums.FinancialReleaseTypeEnum;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "financial_release")
+@Getter
+@Setter
 public abstract class FinancialRelease {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long code;
 
     private LocalDate date;
     private String description;
     private Double value;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
-    private FinancialReleaseTypeEnum financialReleaseTypeEnum;
+
+    @Column(name = "financial_release_type")
+    private String financialReleaseTypeEnum;
 
     public FinancialRelease() {}
 
@@ -27,54 +37,7 @@ public abstract class FinancialRelease {
         this.description = description;
         this.value = value;
         this.category = category;
-        this.financialReleaseTypeEnum = financialReleaseTypeEnum;
+        this.financialReleaseTypeEnum = financialReleaseTypeEnum.name();
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Double getValue() {
-        return value;
-    }
-
-    public Long getCode() {
-        return code;
-    }
-
-    public FinancialReleaseTypeEnum getFinancialReleaseTypeEnum() {
-        return financialReleaseTypeEnum;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setValue(Double value) {
-        this.value = value;
-    }
-
-    public void setCode(Long code) {
-        this.code = code;
-    }
-
-    public void setFinancialReleaseTypeEnum(FinancialReleaseTypeEnum financialReleaseTypeEnum) {
-        this.financialReleaseTypeEnum = financialReleaseTypeEnum;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 }
