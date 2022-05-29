@@ -1,5 +1,6 @@
 package br.com.ozzziek.stoncksproject.entities;
 
+import br.com.ozzziek.stoncksproject.entities.enums.CategoryStatusEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +20,7 @@ public class Category {
 
     private String name;
     private Double percentual;
+    private String status;
 
     public Category() {}
 
@@ -30,8 +32,17 @@ public class Category {
         this.name = name;
         this.percentual = 0.0;
     }
-    public Category(String name, Double percentual){
+    public Category(String name, Double percentual, CategoryStatusEnum categoryStatusEnum){
         this.name = name;
         this.percentual = percentual;
+        this.status = categoryStatusEnum.name();
     }
+
+    public Category(Long id, String name, Double percentual, CategoryStatusEnum categoryStatusEnum){
+        this.id = id;
+        this.name = name;
+        this.percentual = percentual;
+        this.status = categoryStatusEnum.name();
+    }
+
 }

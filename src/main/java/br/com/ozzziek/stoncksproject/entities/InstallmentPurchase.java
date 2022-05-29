@@ -1,6 +1,5 @@
 package br.com.ozzziek.stoncksproject.entities;
 
-import br.com.ozzziek.stoncksproject.entities.enums.CategoryEnum;
 import br.com.ozzziek.stoncksproject.entities.enums.FinancialReleaseTypeEnum;
 
 import javax.persistence.Entity;

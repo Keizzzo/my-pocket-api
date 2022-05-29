@@ -3,6 +3,7 @@ package br.com.ozzziek.stoncksproject.simulations;
 import br.com.ozzziek.stoncksproject.entities.Category;
 import br.com.ozzziek.stoncksproject.entities.FinancialRelease;
 import br.com.ozzziek.stoncksproject.entities.SimpleRelease;
+import br.com.ozzziek.stoncksproject.entities.enums.CategoryStatusEnum;
 import br.com.ozzziek.stoncksproject.entities.enums.FinancialReleaseTypeEnum;
 import br.com.ozzziek.stoncksproject.services.FinancialReleaseService;
 import br.com.ozzziek.stoncksproject.services.FinancialReleaseServiceImpl;
@@ -28,7 +29,7 @@ public class FinancialReleaseMethodsFlow {
         financialRelease.setDescription("Product A Line");
         financialRelease.setValue(100.00);
         financialRelease.setFinancialReleaseTypeEnum(FinancialReleaseTypeEnum.INPUT.name());
-        financialRelease.setCategory(new Category("TEST", 0.25));
+        financialRelease.setCategory(new Category("TEST", 0.25, CategoryStatusEnum.ACTIVE));
 
         var idGenerated = service.insertFinancialRelease(financialRelease);
 
