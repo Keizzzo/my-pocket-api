@@ -1,13 +1,9 @@
 package br.com.ozzziek.stoncksproject.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
 
-@Entity
-public class Parcel extends InstallmentPurchase {
+//@Entity
+public class Parcel extends TermPurchase {
     private Integer numberOfParcels;
     private Integer currentParcel;
 

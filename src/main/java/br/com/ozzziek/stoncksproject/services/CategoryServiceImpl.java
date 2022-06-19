@@ -3,6 +3,7 @@ package br.com.ozzziek.stoncksproject.services;
 import br.com.ozzziek.stoncksproject.entities.Category;
 import br.com.ozzziek.stoncksproject.repositories.CategoryRepository;
 import lombok.AllArgsConstructor;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,12 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public void insertList(List<Category> categories) {
+
         repository.insertList(categories);
+    }
+
+    @Override
+    public void updateCategory(List<Category> categories) {
+        repository.updateCategory(categories);
     }
 }

@@ -7,4 +7,5 @@ import java.util.List;
 public interface CategoryService {
     List<Category> listCategories(String month);
     void insertList(List<Category> obj);
+    void updateCategory(List<Category> categories);
 }

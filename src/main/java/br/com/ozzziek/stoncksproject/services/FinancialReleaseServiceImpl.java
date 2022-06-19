@@ -24,9 +24,6 @@ public class FinancialReleaseServiceImpl implements FinancialReleaseService{
 
         return financialReleaseRepository.insert(financialRelease);
 
-//        return financialReleaseRepositoryJpa.save(financialRelease).getCode();
-
-
     }
 
     @Override

@@ -45,6 +45,25 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     }
 
     @Override
+    public void updateCategory(List<Category> categories) {
+        jdbcTemplate.batchUpdate(
+                "UPDATE CATEGORY SET PERCENTUAL_SHARE = ?, NAME = ?, STATUS = ? WHERE ID = ?",
+                new BatchPreparedStatementSetter() {
+
+                    public void setValues(PreparedStatement ps, int i) throws SQLException {
+                        ps.setDouble(1, categories.get(i).getPercentual());
+                        ps.setString(2, categories.get(i).getName());
+                        ps.setString(3, categories.get(i).getStatus());
+                        ps.setLong(4, categories.get(i).getId());
+                    }
+
+                    public int getBatchSize() {
+                        return categories.size();
+                    }
+                });
+    }
+
+    @Override
     public Category findById(Long id) {
         return null;
     }

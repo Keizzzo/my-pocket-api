@@ -2,5 +2,6 @@ package br.com.ozzziek.stoncksproject.entities.enums;
 
 public enum FinancialReleaseTypeEnum {
     INPUT,
-    OUTPUT
+    OUTPUT,
+    PURCHASE_ON_TERM
 }

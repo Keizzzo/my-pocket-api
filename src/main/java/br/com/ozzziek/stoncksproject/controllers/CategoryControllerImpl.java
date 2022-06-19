@@ -32,4 +32,11 @@ public class CategoryControllerImpl implements CategoryController{
     public void insertList(List<Category> categories) {
         categoryService.insertList(categories);
     }
+
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
+    @RequestMapping(value = "/categories", method = RequestMethod.PUT)
+    @Override
+    public void updateCategory(List<Category> categories) {
+        categoryService.updateCategory(categories);
+    }
 }

@@ -8,7 +8,7 @@ public class GerarParcelasPagamentoSimulacao {
         Parcel parcelado = new Parcel();
         parcelado.setNumberOfParcels(24);
         parcelado.setDescription("Empréstimo com Agiota");
-        parcelado.setDueDay(20);
+        parcelado.setBillGenerateDay(20);
 
 //        parcelado.generateParcels();
 //
