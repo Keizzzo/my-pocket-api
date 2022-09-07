@@ -65,6 +65,8 @@ public class CategoryRepositoryImpl implements CategoryRepository {
 
     @Override
     public Category findById(Long id) {
+
+        //Not used
         return null;
     }
 
@@ -85,12 +87,12 @@ public class CategoryRepositoryImpl implements CategoryRepository {
 
     @Override
     public void update(Long id, Category obj) {
-
+        //Not used here
     }
 
     @Override
     public void remove(Long id) {
-
+        //Not used here
     }
 
 }

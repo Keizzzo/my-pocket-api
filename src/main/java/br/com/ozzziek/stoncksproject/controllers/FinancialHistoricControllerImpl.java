@@ -21,8 +21,8 @@ public class FinancialHistoricControllerImpl implements FinancialHistoricControl
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     @RequestMapping(value = "/historic", method = RequestMethod.GET)
     @Override
-    public List<FinancialRelease> historic(@RequestParam String queryParameter) {
-        return financialReleaseService.listFinancialHystoric(queryParameter);
+    public List<FinancialRelease> historic(@RequestParam String month) {
+        return financialReleaseService.listFinancialHystoric(month);
     }
 
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)

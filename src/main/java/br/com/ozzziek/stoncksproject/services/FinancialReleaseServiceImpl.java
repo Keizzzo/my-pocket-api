@@ -1,6 +1,7 @@
 package br.com.ozzziek.stoncksproject.services;
 
 import br.com.ozzziek.stoncksproject.entities.FinancialRelease;
+import br.com.ozzziek.stoncksproject.entities.SimpleRelease;
 import br.com.ozzziek.stoncksproject.repositories.FinancialReleaseRepository;
 import br.com.ozzziek.stoncksproject.repositories.FinancialReleaseRepositoryJpa;
 import lombok.AllArgsConstructor;
@@ -46,13 +47,9 @@ public class FinancialReleaseServiceImpl implements FinancialReleaseService{
     @Override
     public void removeFinancialRelease(Long id) {
 
-//        financialReleaseRepository.remove(id);
-        var financialRelease = financialReleaseRepositoryJpa.findById(id);
+        var financialRelease = new SimpleRelease();
+        financialRelease.setCode(id);
 
-        if(financialRelease.isEmpty()){
-            throw new RuntimeException("Not found the object to remove.");
-        }
-
-        financialReleaseRepositoryJpa.delete(financialRelease.get());
+        financialReleaseRepositoryJpa.delete(financialRelease);
     }
 }
