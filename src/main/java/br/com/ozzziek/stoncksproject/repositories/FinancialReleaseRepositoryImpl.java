@@ -3,6 +3,7 @@ package br.com.ozzziek.stoncksproject.repositories;
 import br.com.ozzziek.stoncksproject.entities.Category;
 import br.com.ozzziek.stoncksproject.entities.FinancialRelease;
 import br.com.ozzziek.stoncksproject.entities.SimpleRelease;
+import br.com.ozzziek.stoncksproject.entities.enums.CategoryStatusEnum;
 import br.com.ozzziek.stoncksproject.entities.enums.FinancialReleaseTypeEnum;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,19 +69,19 @@ public class FinancialReleaseRepositoryImpl implements FinancialReleaseRepositor
     @Override
     public List<FinancialRelease> list(String parameters) {
 
-        String queryString = "SELECT ID, DATE, DESCRIPTION, VALUE, CATEGORY_ID, FINANCIAL_RELEASE_TYPE FROM FINANCIAL_RELEASE ";
+        String queryString = "SELECT fr.ID, fr.DATE, fr.DESCRIPTION, fr.VALUE, fr.CATEGORY_ID, c.name, c.percentual_share, c.status, fr.FINANCIAL_RELEASE_TYPE FROM FINANCIAL_RELEASE fr inner join category c on fr.category_id = c.id ";
 
         if (parameters != null) {
             queryString += " WHERE MONTH(DATE) = " + parameters;
         }
 
         return jdbcTemplate.query(queryString,
-                (rs, row) -> new SimpleRelease(Long.parseLong(rs.getString("ID")),
-                        rs.getDate("DATE").toLocalDate(),
-                        rs.getString("DESCRIPTION"),
-                        rs.getDouble("VALUE"),
-                        new Category(rs.getLong("CATEGORY_ID")),
-                        FinancialReleaseTypeEnum.valueOf(rs.getString("FINANCIAL_RELEASE_TYPE"))));
+                (rs, row) -> new SimpleRelease(Long.parseLong(rs.getString("fr.ID")),
+                        rs.getDate("fr.DATE").toLocalDate(),
+                        rs.getString("fr.DESCRIPTION"),
+                        rs.getDouble("fr.VALUE"),
+                        new Category(rs.getLong("fr.CATEGORY_ID"), rs.getString("c.name"), rs.getDouble("c.percentual_share"), CategoryStatusEnum.valueOf(rs.getString("c.status"))),
+                        FinancialReleaseTypeEnum.valueOf(rs.getString("fr.FINANCIAL_RELEASE_TYPE"))));
 
     }
 

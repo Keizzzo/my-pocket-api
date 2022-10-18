@@ -2,7 +2,9 @@ package br.com.ozzziek.stoncksproject.controllers;
 
 import br.com.ozzziek.stoncksproject.entities.Category;
 import br.com.ozzziek.stoncksproject.entities.dtos.FinancialBalance;
+import br.com.ozzziek.stoncksproject.services.FinanceReportService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,11 +19,14 @@ import java.util.List;
 @AllArgsConstructor
 public class FinanceReportControllerImpl implements FinanceReportController {
 
+    @Autowired
+    private FinanceReportService financeReportService;
+
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     @RequestMapping(value = "/financial-resource/balance", method = RequestMethod.GET)
     @Override
     public BigDecimal getBalance(@RequestParam String month) {
-        return null;
+        return financeReportService.getBalance(month);
     }
 
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
