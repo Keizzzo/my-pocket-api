@@ -9,5 +9,5 @@ import java.util.List;
 public interface FinanceReportController {
 
     BigDecimal getBalance(String month);
-    FinancialBalance distributeValuesInCategory(BigDecimal balance);
+    FinancialBalance distributeValuesInCategory(String month);
 }

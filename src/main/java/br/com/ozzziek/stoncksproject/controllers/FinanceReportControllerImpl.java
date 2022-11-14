@@ -4,6 +4,7 @@ import br.com.ozzziek.stoncksproject.entities.Category;
 import br.com.ozzziek.stoncksproject.entities.dtos.FinancialBalance;
 import br.com.ozzziek.stoncksproject.services.FinanceReportService;
 import lombok.AllArgsConstructor;
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,9 +31,10 @@ public class FinanceReportControllerImpl implements FinanceReportController {
     }
 
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
-    @RequestMapping(value = "/financial-resource/redistributed-values", method = RequestMethod.GET)
+    @RequestMapping(value = "/financial-resource/distribute-values", method = RequestMethod.GET)
     @Override
-    public FinancialBalance distributeValuesInCategory(@RequestParam BigDecimal balance) {
-        return null;
+    public FinancialBalance distributeValuesInCategory(@RequestParam String month) {
+        return financeReportService.distributeValuesInCategory(month);
+
     }
 }

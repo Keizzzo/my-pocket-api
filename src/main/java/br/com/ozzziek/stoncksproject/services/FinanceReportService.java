@@ -7,6 +7,6 @@ import java.math.BigDecimal;
 public interface FinanceReportService {
 
     BigDecimal getBalance(String month);
-    FinancialBalance distributeValuesInCategory(BigDecimal balance);
+    FinancialBalance distributeValuesInCategory(String month);
 
 }

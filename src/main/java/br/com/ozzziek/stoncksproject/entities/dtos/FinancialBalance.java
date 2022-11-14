@@ -14,12 +14,4 @@ public class FinancialBalance {
     private BigDecimal balance;
     private Map<String, BigDecimal> categoryValues = new HashMap<>();
 
-    public FinancialBalance() {
-    }
-
-    public FinancialBalance(BigDecimal balance, String category, BigDecimal remainValue) {
-        this.balance = balance;
-        categoryValues.put(category, remainValue);
-    }
-
 }
