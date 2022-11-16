@@ -13,5 +13,6 @@ public class FinancialBalance {
 
     private BigDecimal balance;
     private Map<String, BigDecimal> categoryValues = new HashMap<>();
+    private Map<String, BigDecimal> categoryExpenses = new HashMap<>();
 
 }

@@ -64,6 +64,11 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     }
 
     @Override
+    public void deactivateCurrentCategories() {
+        jdbcTemplate.update("UPDATE category SET status = 'INACTIVE' WHERE status = 'ACTIVE'");
+    }
+
+    @Override
     public Category findById(Long id) {
 
         //Not used

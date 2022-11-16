@@ -7,4 +7,5 @@ import java.util.List;
 public interface CategoryRepository extends Repository<Category> {
     void insertList(List<Category> obj);
     void updateCategory(List<Category> categories);
+    void deactivateCurrentCategories();
 }

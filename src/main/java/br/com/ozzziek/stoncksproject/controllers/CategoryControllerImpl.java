@@ -34,29 +34,19 @@ public class CategoryControllerImpl implements CategoryController{
     @Override
     public ResponseEntity<Void> insertList(List<Category> categories) {
 
-        verifyPercentage(categories);
         categoryService.insertList(categories);
 
         return ResponseEntity.status(200).build();
 
     }
 
+
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     @RequestMapping(value = "/categories", method = RequestMethod.PUT)
     @Override
     public void updateCategory(List<Category> categories) {
 
-        verifyPercentage(categories);
-
         categoryService.updateCategory(categories);
-    }
-
-    private void verifyPercentage(List<Category> categories){
-        Double percentage = categories.stream().map(c -> c.getPercentual()).reduce(0.0, (x, y) -> x+y);
-
-        if(percentage != 1.0){
-            throw new BusinessRulesException("O valor percentual deve ser de 100%. Valor Atual: " + (percentage*=100) + "%.");
-        }
     }
 
 }

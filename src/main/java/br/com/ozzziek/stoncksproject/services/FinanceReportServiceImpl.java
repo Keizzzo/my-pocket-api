@@ -49,8 +49,8 @@ public class FinanceReportServiceImpl implements FinanceReportService {
 
         FinancialBalance financialBalance = new FinancialBalance();
 
-        Double sumInput = monthlyReleases.stream().filter(f -> f.getFinancialReleaseTypeEnum()
-                        .equals(FinancialReleaseTypeEnum.INPUT.toString()))
+        Double sumInput = monthlyReleases.stream()
+                .filter(f -> f.getFinancialReleaseTypeEnum().equals(FinancialReleaseTypeEnum.INPUT.toString()))
                 .map(FinancialRelease::getValue)
                 .reduce(0.0, (subtotal, element) -> subtotal + element);
 
@@ -58,11 +58,21 @@ public class FinanceReportServiceImpl implements FinanceReportService {
 
         List<Category> categories = categoryService.listCategories("ACTIVE");
 
-        Long nItens = categories.stream()
-                                .map(c -> financialBalance.getCategoryValues().put(c.getName(),
-                                    new BigDecimal(c.getPercentual() * sumInput).setScale(2, RoundingMode.HALF_UP)))
-                                .count();
+        for (Category c : categories) {
 
+            Double categoryAvailable = c.getPercentual() * sumInput;
+
+            financialBalance.getCategoryValues().put(c.getName(),
+                    new BigDecimal(categoryAvailable).setScale(2, RoundingMode.HALF_UP));
+
+            Double categoryExpenses = monthlyReleases.stream()
+                    .filter(r -> r.getCategory().getName().equals(c.getName()))
+                    .map(e -> e.getValue())
+                    .reduce(0.0, (x, y) -> x + y);
+
+            financialBalance.getCategoryExpenses().put(c.getName(), new BigDecimal(categoryExpenses).setScale(2, RoundingMode.HALF_UP));
+
+        }
 
         return financialBalance;
     }
