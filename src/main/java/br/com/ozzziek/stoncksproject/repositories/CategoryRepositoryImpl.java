@@ -1,9 +1,7 @@
 package br.com.ozzziek.stoncksproject.repositories;
 
 import br.com.ozzziek.stoncksproject.entities.Category;
-import br.com.ozzziek.stoncksproject.entities.SimpleRelease;
 import br.com.ozzziek.stoncksproject.entities.enums.CategoryStatusEnum;
-import br.com.ozzziek.stoncksproject.entities.enums.FinancialReleaseTypeEnum;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;

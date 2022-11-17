@@ -7,12 +7,10 @@ import br.com.ozzziek.stoncksproject.entities.enums.CategoryStatusEnum;
 import br.com.ozzziek.stoncksproject.entities.enums.FinancialReleaseTypeEnum;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -54,7 +52,7 @@ public class FinancialReleaseRepositoryImpl implements FinancialReleaseRepositor
     @Override
     public FinancialRelease findById(Long id) {
 
-        var test = jdbcTemplate.queryForObject("SELECT ID, DATE, DESCRIPTION, VALUE, CATEGORY_ID, FINANCIAL_RELEASE_TYPE FROM FINANCIAL_RELEASE WHERE ID = ?",
+        var simpleRelease = jdbcTemplate.queryForObject("SELECT ID, DATE, DESCRIPTION, VALUE, CATEGORY_ID, FINANCIAL_RELEASE_TYPE FROM FINANCIAL_RELEASE WHERE ID = ?",
                 new Object[]{id},
                 (rs, row) -> new SimpleRelease(rs.getLong("ID"),
                         rs.getDate("DATE").toLocalDate(),
@@ -63,7 +61,7 @@ public class FinancialReleaseRepositoryImpl implements FinancialReleaseRepositor
                         new Category(rs.getLong("CATEGORY_ID")),
                         FinancialReleaseTypeEnum.valueOf(rs.getString("FINANCIAL_RELEASE_TYPE"))));
 
-        return test;
+        return simpleRelease;
     }
 
     @Override
@@ -104,16 +102,7 @@ public class FinancialReleaseRepositoryImpl implements FinancialReleaseRepositor
     }
 
     @Override
-//    @Modifying
-//    @Transactional
     public void remove(Long id) {
-//        var release = findById(id);
-//
-//        if (release == null) {
-//            throw new RuntimeException("Object not found");
-//        }
-
         jdbcTemplate.update("DELETE FROM FINANCIAL_RELEASE WHERE ID = ?", id);
-
     }
 }

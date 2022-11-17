@@ -4,7 +4,6 @@ import br.com.ozzziek.stoncksproject.entities.Category;
 import br.com.ozzziek.stoncksproject.exceptions.BusinessRulesException;
 import br.com.ozzziek.stoncksproject.repositories.CategoryRepository;
 import lombok.AllArgsConstructor;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

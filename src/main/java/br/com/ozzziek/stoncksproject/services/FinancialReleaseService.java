@@ -7,7 +7,6 @@ import java.util.List;
 public interface FinancialReleaseService {
 
     Long insertFinancialRelease(FinancialRelease financialRelease);
-    Double calculateBalance();
     List<FinancialRelease> listFinancialHystoric(String month);
     void updateFinancialRelease(Long id, FinancialRelease financialRelease);
     void removeFinancialRelease(Long id);

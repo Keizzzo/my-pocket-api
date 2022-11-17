@@ -56,10 +56,6 @@ public class MonthlyPaymentRepositoryImpl implements MonthlyPaymentRepository {
     public List<MonthlyPayment> list(String parameters) {
         String queryString = "select financial_release_id, DATE, DESCRIPTION, VALUE, category_id, c.percentual_share, c.name, c.status, financial_release_type, tp.id, total_value, validity_day, bill_generate_day, details, is_active from financial_release fr inner join term_purchase tp on fr.id = tp.financial_release_id inner join category c on fr.category_id = c.id";
 
-//        if (parameters != null) {
-//            queryString += " WHERE STATUS = '" + parameters + "'";
-//        }
-
         return jdbcTemplate.query(queryString,
                 (rs, row) -> new MonthlyPayment(Long.parseLong(rs.getString("FINANCIAL_RELEASE_ID")),
                         rs.getDate("DATE").toLocalDate(),

@@ -36,6 +36,10 @@ public class MonthlyPaymentServiceImpl implements MonthlyPaymentService{
 
     @Override
     public void updateMonthlyPayment(Long id, MonthlyPayment financialRelease) {
+
+        //Code = Financial Release id ID = Term Purchase ID
+
+        financialReleaseRepository.update(financialRelease.getCode(), financialRelease);
         monthlyPaymentRepository.update(id, financialRelease);
     }
 

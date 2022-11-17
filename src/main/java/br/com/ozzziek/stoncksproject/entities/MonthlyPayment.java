@@ -15,7 +15,7 @@ public class MonthlyPayment extends TermPurchase {
 
     public MonthlyPayment(){}
 
-    public MonthlyPayment(Long code, LocalDate date, String description, Double value, Category category, FinancialReleaseTypeEnum financialReleaseTypeEnum, Long id, BigDecimal totalValue, Integer validityDay, Integer billGenerateDay, String details, Boolean active) {
-        super(code, date, description, value, category, financialReleaseTypeEnum, id, totalValue, validityDay, billGenerateDay, details, active);
+    public MonthlyPayment(Long code, LocalDate date, String description, Double value, Category category, FinancialReleaseTypeEnum financialReleaseTypeEnum, Long termPurchaseId, BigDecimal totalValue, Integer validityDay, Integer billGenerateDay, String details, Boolean active) {
+        super(code, date, description, value, category, financialReleaseTypeEnum, termPurchaseId, totalValue, validityDay, billGenerateDay, details, active);
     }
 }

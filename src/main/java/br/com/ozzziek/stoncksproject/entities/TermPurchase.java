@@ -4,7 +4,6 @@ import br.com.ozzziek.stoncksproject.entities.enums.FinancialReleaseTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -13,7 +12,7 @@ import java.time.LocalDate;
 @Setter
 public abstract class TermPurchase extends FinancialRelease{
 
-    private Long id;
+    private Long termPurchaseId;
     private BigDecimal totalValue;
     private Integer validityDay;
     private Integer billGenerateDay;
@@ -27,7 +26,7 @@ public abstract class TermPurchase extends FinancialRelease{
 
     public TermPurchase(Long code, LocalDate date, String description, Double value, Category category, FinancialReleaseTypeEnum financialReleaseTypeEnum, Long id, BigDecimal totalValue, Integer validityDay, Integer billGenerateDay, String details, Boolean active) {
         super(code, date, description, value, category, financialReleaseTypeEnum);
-        this.id = id;
+        this.termPurchaseId = id;
         this.totalValue = totalValue;
         this.validityDay = validityDay;
         this.billGenerateDay = billGenerateDay;

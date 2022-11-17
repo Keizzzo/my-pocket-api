@@ -1,6 +1,7 @@
 package br.com.ozzziek.stoncksproject.controllers;
 
 import br.com.ozzziek.stoncksproject.entities.Installment;
+import br.com.ozzziek.stoncksproject.entities.dtos.InstallmentBody;
 import br.com.ozzziek.stoncksproject.services.InstallmentService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ public class InstallmentControllerImpl implements InstallmentController{
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
     @RequestMapping(value = "/installment/{termPurchaseId}", method = RequestMethod.POST)
     @Override
-    public void insertInstallment(@RequestBody Integer totalInstallments,@RequestBody Integer validityDay, @PathVariable Long termPurchaseId) {
-        installmentService.insertInstallment(totalInstallments, validityDay, termPurchaseId);
+    public void insertInstallment(@RequestBody InstallmentBody installmentBody, @PathVariable Long termPurchaseId) {
+        installmentService.insertInstallment(installmentBody.getTotalInstallments(), installmentBody.getValidityDay(), termPurchaseId);
     }
 
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
