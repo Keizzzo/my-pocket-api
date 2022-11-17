@@ -3,6 +3,7 @@ package br.com.ozzziek.stoncksproject.services;
 import br.com.ozzziek.stoncksproject.entities.Category;
 import br.com.ozzziek.stoncksproject.entities.FinancialRelease;
 import br.com.ozzziek.stoncksproject.entities.dtos.FinancialBalance;
+import br.com.ozzziek.stoncksproject.entities.dtos.FinancialBalanceDashboardValue;
 import br.com.ozzziek.stoncksproject.entities.enums.FinancialReleaseTypeEnum;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.List;
+
+import static br.com.ozzziek.stoncksproject.entities.enums.CategoryStatusEnum.ACTIVE;
 
 @Service
 @AllArgsConstructor
@@ -56,22 +59,23 @@ public class FinanceReportServiceImpl implements FinanceReportService {
 
         financialBalance.setBalance(new BigDecimal(sumInput).setScale(2, RoundingMode.HALF_UP));
 
-        List<Category> categories = categoryService.listCategories("ACTIVE");
+        List<Category> categories = categoryService.listCategories(ACTIVE.toString());
 
         for (Category c : categories) {
 
-            Double categoryAvailable = c.getPercentual() * sumInput;
-
-            financialBalance.getCategoryValues().put(c.getName(),
-                    new BigDecimal(categoryAvailable).setScale(2, RoundingMode.HALF_UP));
+            Double categoryExpected = c.getPercentual() * sumInput;
 
             Double categoryExpenses = monthlyReleases.stream()
                     .filter(r -> r.getCategory().getName().equals(c.getName()))
                     .map(e -> e.getValue())
                     .reduce(0.0, (x, y) -> x + y);
 
-            financialBalance.getCategoryExpenses().put(c.getName(), new BigDecimal(categoryExpenses).setScale(2, RoundingMode.HALF_UP));
+            FinancialBalanceDashboardValue dashboardValue = new FinancialBalanceDashboardValue();
+            dashboardValue.setExpectedExpense( new BigDecimal(categoryExpected).setScale(2, RoundingMode.HALF_UP));
+            dashboardValue.setCurrentExpense(new BigDecimal(categoryExpenses).setScale(2, RoundingMode.HALF_UP));
+            dashboardValue.setAvailable(new BigDecimal(categoryExpected - categoryExpenses).setScale(2, RoundingMode.HALF_UP));
 
+            financialBalance.getCategoryValues().put(c.getName(), dashboardValue);
         }
 
         return financialBalance;
