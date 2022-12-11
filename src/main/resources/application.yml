@@ -4,9 +4,11 @@ server:
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/stoncks?useSSL=false&useTimezone=true&serverTimezone=UTC
-    username: root
-    password: Keizo!1404
+    url: jdbc:mysql://us-cdbr-east-06.cleardb.net:3306/heroku_d30ac4349cf62ff?useSSL=false&useTimezone=true&serverTimezone=UTC
+    username: b58658697408df
+    password: 8261d761
+    #mysql://b58658697408df:8261d761@us-cdbr-east-06.cleardb.net/heroku_d30ac4349cf62ff?reconnect=true
+    #jdbc:mysql://localhost:3306/stoncks?useSSL=false&useTimezone=true&serverTimezone=UTC root Keizo!1404
   jpa:
     hibernate:
       naming:
